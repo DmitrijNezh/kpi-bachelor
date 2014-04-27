@@ -17,7 +17,7 @@ class PagesController extends Controller
     public function helpAction()
     {
         $this->auth();
-        
+
         $this->view->generate('PagesView.php', $this->model->getDataWithPage('help'));
     }
 
