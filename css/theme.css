@@ -50,3 +50,7 @@ a {
 .content {
     padding: 40px 15px;
 }
+
+html, body, #g-map {
+    height: 500px;
+}

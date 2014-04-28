@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseDB.php';
 
-
 class Configs extends BaseDB
 {
     public function read($key)
@@ -20,5 +19,4 @@ class Configs extends BaseDB
         $conf = $this->read($key);
         return $conf['c_value'];
     }
-
 }

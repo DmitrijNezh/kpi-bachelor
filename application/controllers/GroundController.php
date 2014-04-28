@@ -2,7 +2,6 @@
 
 class GroundController extends Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -53,5 +52,4 @@ class GroundController extends Controller
             }
         }
     }
-
 }

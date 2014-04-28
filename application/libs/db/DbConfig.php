@@ -1,6 +1,5 @@
 <?php
 
-
 class DbConfig
 {
 	public static $dbHost = 'localhost';

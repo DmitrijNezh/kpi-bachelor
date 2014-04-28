@@ -28,5 +28,4 @@ class GroundTypes extends BaseDB
     {
         return $this->db->sql("SELECT * FROM ground_types");
     }
-
 }

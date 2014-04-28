@@ -3,9 +3,7 @@ require_once DB_ROOT."Users.php";
 
 class Model
 {
-    public function getData()
-    {
-    }
+    public function getData() {}
 
     public function isAuth()
     {
