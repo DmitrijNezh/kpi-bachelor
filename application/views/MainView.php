@@ -18,14 +18,14 @@
         <?php foreach ($data['maps'] as $map) { ?>
             <tr>
                 <td><?php echo $map['id']; ?></td>
-                <td><?php echo $map['title']; ?></td>
+                <td><a href="/map/index/?id=<?php echo $map['id']; ?>"><?php echo $map['title']; ?></a></td>
                 <td><?php echo $map['description']; ?></td>
                 <td><?php echo $map['lat']; ?></td>
                 <td><?php echo $map['lng']; ?></td>
                 <td><?php echo $map['zoom']; ?></td>
                 <td style="text-align: center;">
                     <?php if ($map['is_public'] == 1) { ?>
-                    <a title="Публичная ссылка" href="<?php echo "/public/maps/?id=".$map['id'];?>"><span class="glyphicon glyphicon-globe"></span></a>
+                    <a title="Публичная ссылка" href="<?php echo "/map/public/?id=".$map['id'];?>"><span class="glyphicon glyphicon-globe"></span></a>
                     &nbsp;
                     <?php } ?>
                     <a title="Редактировать" href="/main/edit/?id=<?php echo $map['id'];?>"><span class="glyphicon glyphicon-pencil"></span></a>

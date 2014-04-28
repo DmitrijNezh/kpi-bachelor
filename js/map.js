@@ -26,6 +26,48 @@ var map = {
 
         map.gMap.setCenter(ll);
         map.gMap.setZoom(zoom);
+    },
+
+    drawLine: function(coordinates, windowContent) {
+        var lls = [
+            new google.maps.LatLng(coordinates[0][0], coordinates[0][1]),
+            new google.maps.LatLng(coordinates[1][0], coordinates[1][1]),
+        ];
+
+        var line = new google.maps.Polyline({
+            path: lls,
+            geodesic: true,
+            strokeColor: '#808000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        line.setMap(map.gMap);
+
+        map.drawPoint(coordinates[0], windowContent);
+        map.drawPoint(coordinates[1], windowContent);
+    },
+
+    drawPoint: function(coordinates, windowContent) {
+        var infoWindow = new google.maps.InfoWindow({
+            content: windowContent
+        });
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(coordinates[0], coordinates[1]),
+            map: map.gMap,
+            title: 'info',
+            animation: google.maps.Animation.DROP
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.open(map.gMap, marker);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        });
+
+        google.maps.event.addListener(infoWindow, 'closeclick', function() {
+            marker.setAnimation(null);
+        });
     }
 
 };

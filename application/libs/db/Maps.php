@@ -49,4 +49,24 @@ class Maps extends BaseDB
     {
         return $this->db->sql("SELECT * FROM maps WHERE id_user = ?", array($idUser));
     }
+
+    public function isUserMap($idUser, $idMap)
+    {
+        $data = $this->db->sql("SELECT 1 FROM maps WHERE id_user = ? AND id = ?", array($idUser, $idMap));
+
+        return !empty($data);
+    }
+
+    public function isPublicMap($idMap)
+    {
+        $data = $this->db->sql("SELECT 1 FROM maps WHERE is_public = 1 AND id = ?", array($idMap));
+
+        return !empty($data);
+    }
+
+    public function readPublic($id)
+    {
+        $row = $this->db->sql("SELECT * FROM maps WHERE id = ? AND is_public = 1", array($id));
+        return $row[0];
+    }
 }
