@@ -54,3 +54,8 @@ a {
 html, body, #g-map {
     height: 500px;
 }
+
+.chart-window {
+    height: 300px;
+    width: 500px;
+}

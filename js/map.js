@@ -4,6 +4,7 @@ var map = {
     zoom: 6,
     mapElement: "g-map",
     gMap: null,
+    chartData: null,
 
     init: function() {
         var ll = new google.maps.LatLng(map.lat, map.lng);
@@ -28,7 +29,7 @@ var map = {
         map.gMap.setZoom(zoom);
     },
 
-    drawLine: function(coordinates, windowContent) {
+    drawLine: function(id, coordinates, windowContent) {
         var lls = [
             new google.maps.LatLng(coordinates[0][0], coordinates[0][1]),
             new google.maps.LatLng(coordinates[1][0], coordinates[1][1]),
@@ -44,11 +45,11 @@ var map = {
 
         line.setMap(map.gMap);
 
-        map.drawPoint(coordinates[0], windowContent);
-        map.drawPoint(coordinates[1], windowContent);
+        map.drawPoint(id, coordinates[0], windowContent);
+        map.drawPoint(id, coordinates[1], windowContent);
     },
 
-    drawPoint: function(coordinates, windowContent) {
+    drawPoint: function(id, coordinates, windowContent) {
         var infoWindow = new google.maps.InfoWindow({
             content: windowContent
         });
@@ -63,13 +64,23 @@ var map = {
         google.maps.event.addListener(marker, 'click', function() {
             infoWindow.open(map.gMap, marker);
             marker.setAnimation(google.maps.Animation.BOUNCE);
+
         });
 
         google.maps.event.addListener(infoWindow, 'closeclick', function() {
             marker.setAnimation(null);
         });
-    }
 
+        google.maps.event.addListener(infoWindow, 'domready', function() {
+            map.initChart(id);
+        });
+    },
+
+    initChart: function(id) {
+        chart.dataId = id;
+        chart.containerId = "chartContainer" + id;
+        chart.init();
+    }
 };
 
 google.maps.event.addDomListener(window, 'load', map.init);
