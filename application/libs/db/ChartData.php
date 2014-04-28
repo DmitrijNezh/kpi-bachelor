@@ -9,6 +9,10 @@ abstract class ChartTypes
 
 class ChartData extends BaseDB
 {
+    public function create($idObj, $idGround, $data)
+    {
+        return $this->db->sql("INSERT INTO chart_data (id_obj, id_ground, type, data) VALUES (?,?,'area',?)", array($idObj, $idGround, $data));
+    }
     public function readAllFromMap($idMap)
     {
         $sql = "

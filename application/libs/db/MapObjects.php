@@ -11,7 +11,8 @@ class MapObjects extends BaseDB
 {
     public function create($idMap, $type, $data)
     {
-        return $this->db->sql("INSERT INTO map_objects (id_map, type, data) VALUES (?,?,?)", array($idMap, $type, $data));
+        $this->db->sql("INSERT INTO map_objects (id_map, type, data) VALUES (?,?,?)", array($idMap, $type, $data));
+        return $this->db->lastInsertId();
     }
 
     public function read($id, $idMap)
